@@ -18,7 +18,12 @@ exports.createUser = async (req, res) => {
 };
 
 // Login user
-
+const generateJWTToken = (user) => {
+  const token = jwt.sign({ userId: user._id }, "your_secret_key_here", {
+    expiresIn: "1h", // Token expires in 1 hour (adjust as needed)
+  });
+  return token;
+};
 // Login user and send JWT token in an HTTP-only cookie
 exports.loginUser = async (req, res) => {
   try {
@@ -132,5 +137,18 @@ exports.deleteUser = async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to delete user", error: error.message });
+  }
+};
+
+
+// Logout user
+exports.logoutUser = (req, res) => {
+  try {
+    // Clear the JWT token from cookies
+    res.clearCookie("token");
+
+    res.status(200).json({ message: "User logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to logout", error: error.message });
   }
 };

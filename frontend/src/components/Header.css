@@ -3,6 +3,8 @@
     background-color: #333;
     color: #fff;
     padding: 1rem 0;
+    border: 0px solid black;
+    border-radius: 10px;
   }
   
   .container {
@@ -15,8 +17,8 @@
   }
   
   .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    width: 80px;
+    margin: 0px 10px;
   }
   
   .nav {
@@ -38,3 +40,6 @@
     font-weight: bold;
   }
   
+  .logo-container{
+    display: flex;
+  }

@@ -41,9 +41,10 @@ exports.loginUser = async (req, res) => {
     }
 
     const token = generateJWTToken(user);
-
+    console.log(user);
     // Set the JWT token in an HTTP-only cookie
     res.cookie("token", token, { httpOnly: true });
+    user.token = token;
 
     res.status(200).json({ message: "User logged in successfully", user });
   } catch (error) {

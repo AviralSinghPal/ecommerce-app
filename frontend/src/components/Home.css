@@ -1,11 +1,14 @@
 /* Home.css */
 
 .home-container {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 1200px;
+    font-family: Geneva, Tahoma, sans-serif;
+    max-width: 100vw;
     margin: 0 auto;
     padding: 1rem;
     text-align: center; /* Center the content */
+    background-color: aqua;
+    border: 0px solid black;
+    border-radius: 10px;
 }
   
   /* Add styles for the product list */
@@ -17,6 +20,7 @@
   }
   
   /* Add styles for each product card */
+  
   .product-card {
     background-color: #f9f9f9;
     border: 1px solid #ccc;
@@ -29,7 +33,9 @@
   .product-card:hover {
     transform: translateY(-5px);
   }
+
   
+/*   
   .product-card .title {
     font-size: 1.2rem;
     font-weight: bold;
@@ -46,7 +52,7 @@
     font-size: 1.4rem;
     font-weight: bold;
     color: #007bff;
-  }
+  } */
   
   /* Add more styles as needed */
   

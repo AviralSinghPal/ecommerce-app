@@ -29,9 +29,11 @@ const Home = () => {
         {products.map((product) => (
           <li key={product._id} className="product-card">
             <ProductCard
+              id ={product._id}
               name={product.name}
               description={product.description}
               price={product.price}
+              image_url={product.image_url}
             />
           </li>
         ))}

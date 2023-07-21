@@ -22,3 +22,4 @@ exports.applyCoupon = async (req, res) => {
 };
 
 // Implement other cart-related operations like adding/removing items, etc. here
+

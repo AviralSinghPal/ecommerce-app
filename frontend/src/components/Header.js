@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 import "./Header.css";
 import logoimg from "../img/logo.png";
+import { useSelector } from "react-redux";
+
 const Header = () => {
   const { isLoggedin } = useContext(AuthContext);
+  const cartItems =useSelector(store => store.cart.items);
+  console.log(cartItems);
 
   return (
     <header className="header">
@@ -24,7 +28,7 @@ const Header = () => {
                 <Link to="/products">Products</Link>
               </li>
               <li className="li">
-                <Link to="/cart">Cart</Link>
+                <Link to="/cart">Cart-{cartItems.length} items</Link>
               </li>
               <li className="li">
                 <Link to="/logout">Logout</Link> {/* Add a logout link */}

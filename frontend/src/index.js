@@ -6,15 +6,20 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./utils/AuthContext";
+import { Provider } from "react-redux";
+import Store from "./utils/store";
+import Cart from "./components/Cart";
 
 const AppLayout = () => {
   return (
     <>
-      <AuthProvider>
-        <Header />
-        <Outlet />
-        <Footer />
-      </AuthProvider>
+      <Provider store={Store} >
+        <AuthProvider>
+          <Header />
+          <Outlet />
+          <Footer />
+        </AuthProvider>
+      </Provider>
     </>
   );
 };
@@ -26,6 +31,7 @@ const appRouter = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
+      { path: "/cart", element: <Cart /> },
     ],
   },
 ]);

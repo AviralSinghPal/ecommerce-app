@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../utils/AuthContext'; // Import the AuthContext
-import './Login.css'; // Import the CSS file
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../utils/AuthContext"; // Import the AuthContext
+import "./Login.css"; // Import the CSS file
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   // Access the AuthContext to get the setIsLoggedin function
@@ -16,10 +16,13 @@ const Login = () => {
     e.preventDefault();
     try {
       // Make a POST request to the login API endpoint
-      const response = await axios.post('http://localhost:5000/api/users/login', {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/users/login",
+        {
+          username,
+          password,
+        }
+      );
 
       console.log(response);
 
@@ -29,12 +32,15 @@ const Login = () => {
         setIsLoggedin(true);
 
         // Redirect to the home page after successful login
-        navigate('/');
+        navigate("/");
       } else {
-        console.error('Login failed:', response.data.message || 'Unknown error');
+        console.error(
+          "Login failed:",
+          response.data.message || "Unknown error"
+        );
       }
     } catch (error) {
-      console.error('Login failed:', error.message);
+      console.error("Login failed:", error.message);
     }
   };
 

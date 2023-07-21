@@ -18,13 +18,30 @@ const seedDatabase = async () => {
     ];
 
     // Create users in the database
-    await User.insertMany(users);
+    // await User.insertMany(users);
 
     // Dummy products
     const products = [
-      { name: 'Product 1', price: 10, description: 'Description for Product 1' },
-      { name: 'Product 2', price: 20, description: 'Description for Product 2' },
-      { name: 'Product 3', price: 30, description: 'Description for Product 3' },
+      { name: 'Laptop', price: 800, description: 'High-performance laptop for professional use' },
+      { name: 'Smartphone', price: 500, description: 'Latest smartphone with advanced features' },
+      { name: 'Camera', price: 600, description: 'Professional DSLR camera with high-resolution' },
+      { name: 'Headphones', price: 100, description: 'Wireless headphones with noise-canceling' },
+      { name: 'Smartwatch', price: 250, description: 'Fitness smartwatch with heart rate monitor' },
+      { name: 'Bluetooth Speaker', price: 80, description: 'Portable Bluetooth speaker with great sound quality' },
+      { name: 'Gaming Console', price: 400, description: 'Next-gen gaming console for immersive gaming experience' },
+      { name: 'Tablet', price: 300, description: 'Slim and lightweight tablet for on-the-go productivity' },
+      { name: 'Printers', price: 150, description: 'All-in-one printer for home and office use' },
+      { name: 'Wireless Router', price: 80, description: 'High-speed wireless router for seamless internet connectivity' },
+      { name: 'External Hard Drive', price: 120, description: '1TB external hard drive for data backup and storage' },
+      { name: 'Graphics Card', price: 350, description: 'Powerful graphics card for smooth gaming performance' },
+      { name: 'Fitness Tracker', price: 70, description: 'Activity tracker to monitor fitness and health' },
+      { name: 'Wireless Earbuds', price: 120, description: 'True wireless earbuds with long battery life' },
+      { name: 'Smart Thermostat', price: 200, description: 'Energy-efficient smart thermostat for home automation' },
+      { name: 'Robot Vacuum', price: 300, description: 'Robotic vacuum cleaner for automated cleaning' },
+      { name: 'Smart Home Security Camera', price: 180, description: 'Wireless security camera with motion detection' },
+      { name: 'Electric Scooter', price: 450, description: 'Foldable electric scooter for urban commuting' },
+      { name: 'Electric Toothbrush', price: 80, description: 'High-tech electric toothbrush for dental care' },
+      { name: 'Portable Power Bank', price: 40, description: '10000mAh power bank for charging devices on the go' },
     ];
 
     // Create products in the database
@@ -32,9 +49,13 @@ const seedDatabase = async () => {
 
     // Dummy coupons
     const coupons = [
-      { code: 'COUPON10', amount: 10 },
-      { code: 'COUPON20', amount: 20 },
-      { code: 'COUPON30', amount: 30 },
+      // { code: 'COUPON10', amount: 10 },
+      // { code: 'COUPON20', amount: 20 },
+      // { code: 'COUPON30', amount: 30 },
+      { code: 'SALE10', amount: 10 },
+      { code: 'DISCOUNT20', amount: 20 },
+      { code: 'OFF30', amount: 30 },
+   
     ];
 
     // Create coupons in the database

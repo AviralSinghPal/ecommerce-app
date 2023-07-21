@@ -18,3 +18,14 @@
   .product-card:hover {
     transform: translateY(-5px);
   }
+
+  .cart-container {
+    font-family: Geneva, Tahoma, sans-serif;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center; /* Center the content */
+    background-color: aqua;
+    border: 0px solid black;
+    border-radius: 10px;
+  }

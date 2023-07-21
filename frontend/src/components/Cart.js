@@ -5,9 +5,13 @@ import './Cart.css'
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.items);
+    const calculateTotalPayable = () => {
+      return cartItems.reduce((total, product) => total + product.price, 0);
+    };
+  
   return (
-    <div>
-        <h1 className='cart-container'>Cart Items - {cartItems.length}</h1>
+    <div className='cart-container'>
+        <h1 className='cart-heading'>Cart Items - {cartItems.length}</h1>
         <ul className="product-list" >
         {cartItems.map((product) => (
           <li key={product._id} className="product-cards">
@@ -21,7 +25,8 @@ const Cart = () => {
           </li>
         ))}
         </ul>
-        
+        <h1>Total Payable: ${calculateTotalPayable()}</h1> 
+               
     </div>
   )
 }

@@ -10,7 +10,7 @@ exports.authenticateUser = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, 'your_secret_key_here');
-    console.log(decodedToken);
+    // console.log(decodedToken);
     req.user = decodedToken;
     next();
   } catch (error) {
@@ -20,7 +20,7 @@ exports.authenticateUser = (req, res, next) => {
 
 exports.authorizeAdmin = (req, res, next) => {    
     try {
-      console.log(req.user.role);
+      // console.log(req.user.role);
       if ("admin"!==(req.user.role)) {
         res.status(403).json({
           message: "Protected route! Admin access required.",

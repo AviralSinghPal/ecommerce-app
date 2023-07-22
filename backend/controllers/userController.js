@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
 // Login user
 const generateJWTToken = (user) => {
   const token = jwt.sign({ userId: user._id , role:user.role }, "your_secret_key_here", {
-    expiresIn: "10h", // Token expires in 1 hour (adjust as needed)
+    expiresIn: "10h",
   });
   return token;
 };

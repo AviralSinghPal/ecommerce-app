@@ -7,10 +7,10 @@ const {authenticateUser, authorizeAdmin} = require('../middleware/auth');
 router.post('/createuser', userController.createUser);
 router.post('/login', userController.loginUser);
 router.get('/me', userController.getUserByToken);
-router.get('/', authenticateUser ,authorizeAdmin ,userController.getAllUsers);
-router.get('/:id', userController.getUserById);
-router.put('/:id', userController.updateUser);
-router.delete('/:id', userController.deleteUser);
+router.get('/', authenticateUser ,authorizeAdmin ,userController.getAllUsers);//admin route
+router.get('/:id', authenticateUser ,authorizeAdmin ,userController.getUserById);//admin route
+router.put('/:id', authenticateUser ,authorizeAdmin ,userController.updateUser);//admin route
+router.delete('/:id', authenticateUser ,authorizeAdmin ,userController.deleteUser);//admin route
 router.post('/logout', userController.logoutUser);
 
 

@@ -9,6 +9,7 @@ import { AuthProvider } from "./utils/AuthContext";
 import { Provider } from "react-redux";
 import Store from "./utils/store";
 import Cart from "./components/Cart";
+import AdminPortal from "./components/AdminPortal";
 
 const AppLayout = () => {
   return (
@@ -32,6 +33,7 @@ const appRouter = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/admin", element: <AdminPortal /> },
     ],
   },
 ]);

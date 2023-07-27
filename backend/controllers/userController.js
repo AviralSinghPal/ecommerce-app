@@ -19,7 +19,7 @@ exports.createUser = async (req, res) => {
 
 // Login user
 const generateJWTToken = (user) => {
-  const token = jwt.sign({ userId: user._id , role:user.role }, "your_secret_key_here", {
+  const token = jwt.sign({ userId: user._id, role:user.role }, "your_secret_key_here", {
     expiresIn: "10h",
   });
   return token;
@@ -43,10 +43,12 @@ exports.loginUser = async (req, res) => {
     const token = generateJWTToken(user);
     console.log(user);
     // Set the JWT token in an HTTP-only cookie
-    res.cookie("token", token, { httpOnly: true });
-    user.token = token;
+    res.cookie("token", token, {
+      maxAge: 1000 * 60 * 60 * 24 * 2, // Cookie expiration time (2 days in this example)
+      httpOnly: true,
+    });
 
-    res.status(200).json({ message: "User logged in successfully", user });
+    res.status(200).json({ message: "User logged in successfully", user,token });
   } catch (error) {
     res.status(500).json({ message: "Failed to log in", error: error.message });
   }

@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 // AuthProvider component to wrap the entire app and manage the authentication state
 export const AuthProvider = ({ children }) => {
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState("");
 
   return (
     <AuthContext.Provider value={{ isLoggedin, setIsLoggedin }}>

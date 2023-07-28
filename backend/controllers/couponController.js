@@ -26,7 +26,10 @@ exports.getAllCoupons = async (req, res) => {
 // Get a single coupon by ID
 exports.getCouponById = async (req, res) => {
   try {
-    const coupon = await Coupon.findById(req.params.id);
+    console.log(req.params);
+    const couponCode = req.params.code; // Get the coupon code from the request parameters
+    const coupon = await Coupon.findOne({ code: couponCode }); // Find the coupon by code
+
     if (!coupon) {
       return res.status(404).json({ message: 'Coupon not found' });
     }

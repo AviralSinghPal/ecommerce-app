@@ -1,41 +1,61 @@
-import React,{useEffect,useContext} from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import "./Cart.css";
 import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
-import "./Cart.css";
-import axios from "axios";
-import { AuthContext } from "../utils/AuthContext";
 
 const Cart = () => {
-  
   const cartItems = useSelector((store) => store.cart.items);
-  const calculateTotalPayable = () => {
-    return cartItems.reduce((total, product) => total + product.price, 0);
-  };
-  const { isLoggedin } = useContext(AuthContext);
+  const [couponCode, setCouponCode] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [originalTotal, setOriginalTotal] = useState(0);
+  const [couponNotFound, setCouponNotFound] = useState(false);
+
   useEffect(() => {
-    const updateCartItems = async () => {
-      const productIds = cartItems.map((product) => product.id);
-      // try {
-      //   const res = await axios.put(`http://localhost:5000/api/users/${isLoggedin._id}`, {
-      //     cartItems: productIds,
-      //   });
-      //   console.log("Cart items updated:", res.data);
-      // } catch (error) {
-      //   console.error("Failed to update cart items:", error.message);
-      // }
-    };
+    // Calculate the original total when cart items change
+    const total = cartItems.reduce((total, product) => total + product.price, 0);
+    setOriginalTotal(total);
+  }, [cartItems]);
 
-    updateCartItems();
-  }, [cartItems, isLoggedin._id]);
+  const handleApplyCoupon = async (couponCode) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/coupons/${couponCode}`);
+      const coupon = response.data;
+  
+      if (coupon && coupon.amount > 0) {
+        setDiscount(coupon.amount);
+        setCouponNotFound(false); // Reset coupon not found state
+      } else {
+        setDiscount(0); // Set discount to zero
+        setCouponNotFound(true); // Set coupon not found state to true
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.log('Coupon not found');
+        setDiscount(0); // Set discount to zero
+        setCouponNotFound(true); // Set coupon not found state to true
+      } else {
+        console.log('Error applying coupon:', error.message);
+      }
+    }
+  };
+  
 
-   
+  const calculateTotalPayable = () => {
+    const total = cartItems.reduce((total, product) => total + product.price, 0);
+    const payableAfterDiscount = total - discount;
+
+    // If the payable amount is negative, return zero
+    return payableAfterDiscount > 0 ? payableAfterDiscount : 0;
+  };
+
   return (
     <div className="cart-container">
       <h1 className="cart-heading">Cart Items - {cartItems.length}</h1>
       <ul className="product-list">
         {cartItems.map((product) => (
           <li key={product._id} className="product-cards">
-            <ProductCard key={product._id}
+            <ProductCard
               id={product._id}
               name={product.name}
               description={product.description}
@@ -45,7 +65,17 @@ const Cart = () => {
           </li>
         ))}
       </ul>
+      <div>
+        <input
+          placeholder="Enter a Coupon Code"
+          value={couponCode}
+          onChange={(e) => setCouponCode(e.target.value)}
+        />
+        <button onClick={() => handleApplyCoupon(couponCode)}>Apply</button>
+        {couponNotFound && <p>Coupon not found</p>} {/* Display error message */}
+      </div>
       <h1>Total Payable: ${calculateTotalPayable()}</h1>
+      <h1>Original Total: ${originalTotal}</h1>
     </div>
   );
 };

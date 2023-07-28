@@ -6,8 +6,8 @@ const {authenticateUser, authorizeAdmin} = require('../middleware/auth');
 
 router.post('/',authenticateUser ,authorizeAdmin ,couponController.createCoupon);//admin route
 router.get('/', couponController.getAllCoupons);
-router.get('/:id', couponController.getCouponById);
-router.put('/:id',authenticateUser ,authorizeAdmin ,couponController.updateCoupon);//admin route
-router.delete('/:id',authenticateUser ,authorizeAdmin ,couponController.deleteCoupon);//admin route
+router.get('/:code', couponController.getCouponById);
+router.put('/:code',authenticateUser ,authorizeAdmin ,couponController.updateCoupon);//admin route
+router.delete('/:code',authenticateUser ,authorizeAdmin ,couponController.deleteCoupon);//admin route
 
 module.exports = router;
